@@ -1,0 +1,18 @@
+language: android
+jdk: openjdk7
+
+before_install:
+    # Making sure gradlew has executable permissions
+    - chmod a+x ./gradlew
+
+android:
+  components:
+    - build-tools-21.1.2
+    - extra-android-support
+    - extra-android-m2repository
+    - android-21
+  licenses:
+    - '.+'
+script:
+  # Sonatype bypass
+   - ./gradlew clean assemble check

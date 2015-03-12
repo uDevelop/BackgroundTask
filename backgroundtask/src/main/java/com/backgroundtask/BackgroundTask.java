@@ -1,5 +1,6 @@
 package com.backgroundtask;
 
+import android.annotation.TargetApi;
 import android.os.AsyncTask;
 
 import java.lang.ref.WeakReference;
@@ -57,6 +58,7 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 		}
 	}
 
+	@TargetApi(11)
 	public final void start() {
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
 			executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
