@@ -70,10 +70,10 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 
 	public BackgroundTask<T> retryOnFail(final int retryMaxCount, final int delay) {
 		if (retryMaxCount < 0) {
-			throw new IllegalArgumentException("retryMaxCount should be positive number");
+			throw new IllegalArgumentException("retryMaxCount must be positive number");
 		}
 		if (delay < 0) {
-			throw new IllegalArgumentException("delay should be positive number");
+			throw new IllegalArgumentException("delay must be positive number");
 		}
 		mRetryMaxCount = retryMaxCount;
 		mDelay = delay;
