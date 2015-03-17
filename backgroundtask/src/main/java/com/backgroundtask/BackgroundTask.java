@@ -17,9 +17,9 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 		throw new AssertionError();
 	}
 
-	public BackgroundTask(TaskCompleteListener<T> weakListener) {
+	public BackgroundTask(TaskCompleteListener<T> strongListener) {
 		super();
-		mWeakListener = new WeakReference<TaskCompleteListener<T>>(weakListener);
+		mWeakListener = new WeakReference<TaskCompleteListener<T>>(strongListener);
 	}
 
 	@Override

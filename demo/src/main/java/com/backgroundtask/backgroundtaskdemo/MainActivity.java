@@ -37,8 +37,8 @@ public class MainActivity extends ActionBarActivity {
 
 		private final String mUrl;
 
-		public DownloadTask(TaskCompleteListener<String> weakListener, String url) {
-			super(weakListener);
+		public DownloadTask(TaskCompleteListener<String> strongListener, String url) {
+			super(strongListener);
 			mUrl = url;
 		}
 
