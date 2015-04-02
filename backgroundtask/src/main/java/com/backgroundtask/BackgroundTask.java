@@ -11,6 +11,7 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 	private Throwable mThrowable;
 	private int mRetryMaxCount = 0;
 	private int mDelay = 0;
+	private TaskPriority mTaskPriority = TaskPriority.UNSPECIFIED;
 
 
 	private BackgroundTask() {
@@ -24,6 +25,7 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 
 	@Override
 	protected final T doInBackground(Void[] params) {
+		mTaskPriority.apply();
 		int retryCount = 0;
 		for(;;) {
 			mThrowable = null;
@@ -82,5 +84,10 @@ public abstract class BackgroundTask<T> extends AsyncTask<Void, Void, T> {
 
 	public BackgroundTask<T> retryOnFail(final int retryMaxCount) {
 		return retryOnFail(retryMaxCount, 0);
+	}
+
+	public BackgroundTask<T> setTaskPriority(final TaskPriority taskPriority) {
+		mTaskPriority = taskPriority == null ? TaskPriority.UNSPECIFIED : taskPriority;
+		return  this;
 	}
 }

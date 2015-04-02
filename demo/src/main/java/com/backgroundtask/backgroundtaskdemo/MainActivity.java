@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 import com.backgroundtask.BackgroundTask;
 import com.backgroundtask.TaskCompleteListener;
+import com.backgroundtask.TaskPriority;
 
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
@@ -30,7 +31,10 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		new DownloadTask(mListener, URL).retryOnFail(2, 2000).start();
+		new DownloadTask(mListener, URL)
+				.setTaskPriority(TaskPriority.BACKGROUND_HIGH)
+				.retryOnFail(2, 2000)
+				.start();
 	}
 
 	private static class DownloadTask extends BackgroundTask<String> {
