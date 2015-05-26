@@ -10,7 +10,7 @@ private static class DownloadTask extends BackgroundTask<String> {
 		private final String mUrl;
 
 		public DownloadTask(TaskCompleteListener<String> strongListener, String url) {
-			super(weakListener);
+			super(strongListener);
 			mUrl = url;
 		}
 
